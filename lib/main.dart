@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget{
+class App extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomeScreen(),
-      title: "My App",
+      title: "App",
     );
   }
-
+  
 }
 
 class HomeScreen extends StatelessWidget{
@@ -20,42 +20,80 @@ class HomeScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Home Screen"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: (){
-              print("tap");
-            },
-            onLongPress: (){
-              print("hold");
-            },
-            onDoubleTap: (){
-              print("double tap");
-            },
-            child: Center(child: Text("Hello World", style: TextStyle(
-              fontSize: 19,
-            ),)),
-          ),
-          InkWell(
-            onTap: (){
-              print("tap");
-            },
-            onLongPress: (){
-              print("hold");
-            },
-            onDoubleTap: (){
-              print("double tap");
-            },
-            child: Center(child: Text("Hello Flutter", style: TextStyle(
-              fontSize: 19,
-            ),)),
-          ),
-        ],
+      body: Scrollbar(
+        thickness: 5,
+        radius: Radius.circular(20),
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text("Username"),
+              subtitle: Text("admin@gmail.com"),
+              trailing: Icon(Icons.arrow_circle_right_outlined),
+            ),
+            Divider(
+              height: 0,
+              color: Colors.red,
+              thickness: 1,
+              indent: 16,
+              endIndent: 16,
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text("Username"),
+              subtitle: Text("admin@gmail.com"),
+              trailing: Icon(Icons.arrow_circle_right_outlined),
+            ),
+            Divider(
+              height: 0,
+              color: Colors.red,
+              thickness: 1,
+              indent: 16,
+              endIndent: 16,
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text("Username"),
+              subtitle: Text("admin@gmail.com"),
+              trailing: Icon(Icons.arrow_circle_right_outlined),
+            ),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World"),
+            Text("hello World2"),
+          ],
+        ),
       ),
+
     );
   }
-
+  
 }
