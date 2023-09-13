@@ -22,7 +22,20 @@ class HomeScreen extends StatelessWidget{
       appBar: AppBar(
         title: Text("Home Screen"),
       ),
-      body: Text("hi"),
+      body: GridView(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        children: [
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+          Icon(Icons.access_alarm),
+        ],
+      ),
 
     );
   }
