@@ -9,7 +9,46 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomeScreen(),
-      title: "Flutter App",
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.indigoAccent,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            padding: EdgeInsets.all(20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+            textStyle: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.green,
+            textStyle: TextStyle(
+              fontSize: 16,
+            ),
+          ),
+        ),
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w900,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+          bodySmall: TextStyle(
+            fontSize: 14,
+            color: Colors.black38,
+          ),
+        ),
+      ),
     );
   }
 
@@ -22,55 +61,26 @@ class HomeScreen extends StatelessWidget{
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index){
-            return ListTile(
-              onTap: (){
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProductDetailsScreen(productId: index.toString()))
-                 ).then((value){
-                   ScaffoldMessenger.of(context).showSnackBar(
-                       SnackBar(content: Text("$value"))
-                   );
-                });
-                },
-              title: Text("Product Id: $index"),
-              subtitle: Text("view details"),
-            );
-          },
-      ),
-    );
-  }
-
-}
-
-class ProductDetailsScreen extends StatelessWidget{
-  final String productId;
-  const ProductDetailsScreen({super.key, required this.productId});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Product Details"),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(productId, style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),),
-            Text("Your Product Id", style: TextStyle(
-              color: Colors.black38,
-              fontSize: 13,
-            ),),
-            SizedBox(height: 15,),
-            ElevatedButton(onPressed: (){
-              Navigator.pop(context, "Product $productId closed!");
-            }, child: Text("Back"))
+            Text("Flutter App", style: Theme.of(context).textTheme.bodyLarge,),
+            Text("version 3", style: Theme.of(context).textTheme.bodyMedium,),
+            Text("Made by Shakibul", style: Theme.of(context).textTheme.bodySmall,),
+
+            SizedBox(height: 10,),
+            TextButton(onPressed: (){}, child: Text("click here"),),
+            TextButton(onPressed: (){}, child: Text("click here"),),
+            TextButton(onPressed: (){}, child: Text("click here"),),
+            ElevatedButton(onPressed: (){}, child: Text("Approve"),),
+
+            SizedBox(height: 5),
+            ElevatedButton(onPressed: (){}, child: Text("Remove"), style:
+               ElevatedButton.styleFrom(
+                 backgroundColor: Colors.red,
+               )
+              ),
           ],
         ),
       ),
