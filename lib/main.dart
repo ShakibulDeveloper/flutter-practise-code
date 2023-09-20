@@ -49,6 +49,19 @@ class MyApp extends StatelessWidget{
           ),
         ),
       ),
+      darkTheme: ThemeData(
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 28,
+            color: Colors.red,
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.red,
+        ),
+      ),
+      // themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
     );
   }
 
