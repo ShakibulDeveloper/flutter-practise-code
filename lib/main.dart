@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main(){
   runApp(MyApp());
@@ -9,9 +10,18 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       home: HomeScreen(),
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: 16,
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -22,47 +32,83 @@ class HomeScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          leading: Icon(CupertinoIcons.back),
-          middle: Text("Home"),
-          trailing: CupertinoSwitch(
-              value: false,
-              activeColor: CupertinoColors.link,
-              onChanged: (bool value){
-
-              },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: Column(
+        children: [
+          Switch(
+              value: true,
+              activeColor: Colors.green,
+              onChanged: (bool value){},
           ),
-        ),
-        child: Center(
-          child: ListView(
-            children: [
-              SizedBox(height: 100,),
-              Column(
-                children: [
-                  Text("Hello Apple"),
-                  Text("Hello Flutter"),
-                  CupertinoButton(child: Text("Click Me"), onPressed: (){}),
-                  CupertinoButton.filled(child: Text("Click Me"), onPressed: (){})
-                ],
-              ),
-              SizedBox(height: 100,),
-              Column(
-                children: [
-                  CupertinoTabBar(
-                    items: [
-                      BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: "Home",),
-                      BottomNavigationBarItem(icon: Icon(CupertinoIcons.mail), label: "Mail",),
-                      BottomNavigationBarItem(icon: Icon(CupertinoIcons.phone), label: "Phone",),
-                      BottomNavigationBarItem(icon: Icon(CupertinoIcons.map), label: "Map",),
-                    ],
+          ElevatedButton(onPressed: (){
+            showDialog(context: context, barrierDismissible: false, builder: (context){
+              return AlertDialog(
+                title: Text("Alert"),
+                content: Text("This is a alert dialog"),
+                actions: [
+                  TextButton(onPressed: (){
+                    Navigator.pop(context);
+                  },
+                    child: Text("Cancel"),
                   ),
+                  TextButton(onPressed: (){}, child: Text("Proceed")),
                 ],
-              ),
+              );
+            });
+          }, child: Text("Dialog Button")),
 
-            ],
+          SizedBox(height: 8,),
+          ElevatedButton(onPressed: (){
+            showAboutDialog(
+                context: context,
+                applicationIcon: Image.network("https://storage.googleapis.com/cms-storage-bucket/a9d6ce81aee44ae017ee.png", width: 30,),
+                applicationName: "Flutter",
+                applicationVersion: "v1.0.0",
+                children: [
+                  Text("This is my about Dialog"),
+                ],
+            );
+          },
+            child: Text("About Dialog"),
           ),
-        ),
+
+          SizedBox(height: 8,),
+          ElevatedButton(
+              onPressed: (){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("This is my Snackbar")),
+                );
+              },
+              child: Text("Snackbar Button"),
+          ),
+
+          SizedBox(height: 8,),
+          ElevatedButton(
+            onPressed: (){
+              showModalBottomSheet(context: context,
+                  isDismissible: false,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(12),
+                      topLeft: Radius.circular(12),
+                    )
+                  ),
+                  builder: (context){
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("This is my modal Buttomsheet"),
+                  ],
+                );
+              });
+            },
+            child: Text("Modal Bottomsheet"),
+          ),
+        ],
+      ),
     );
   }
 
