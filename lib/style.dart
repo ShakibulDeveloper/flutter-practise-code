@@ -1,24 +1,31 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
-TextStyle LargeText(context){
-  double mediaWidth = MediaQuery.of(context).size.width;
-  double mediaHeight = MediaQuery.of(context).size.height;
-  dynamic mediaOrientation = MediaQuery.of(context).orientation;
+//=======INPUT FIELD STYLES========
+InputDecoration AppInputStyle(context, String labelText){
+   return InputDecoration(
+    filled: true,
+    fillColor: Colors.black12,
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(width: 0, color: Colors.white),
+    ),
+    hintText: "Enter ${labelText}",
+    label: Text("$labelText"),
+  );
+}
 
-  if(mediaWidth > 700){
-    //=== DESKTOP VIEW ===
-    return TextStyle(
-      fontSize: 64,
-      fontWeight: FontWeight.bold,
-    );
-  }
+//======LARGE TEXT STYLES========
+TextStyle LargeTextStyle(){
+  return TextStyle(
+    fontSize: 38,
+    fontWeight: FontWeight.bold,
+  );
+}
 
-  else{
-    //=== MOBILE VIEW ===
-    return TextStyle(
-      fontSize: 42,
-    );
-  }
-
+//======ELEVATED BUTTON STYLES========
+ElevatedButtonThemeData AppElevatedButton(){
+  return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(double.infinity, 50),
+      )
+  );
 }
